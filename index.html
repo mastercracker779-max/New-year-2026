@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Happy New Year 2026</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+            background: #1b2735;
+            color: white;
+        }
+
+        /* Splash Page */
+        #splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1b2735);
+            background-size: 400% 400%;
+            animation: bgMove 8s ease infinite;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            text-align: center;
+        }
+
+        #splash h1 {
+            font-size: 60px;
+            color: #ffd700;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        #splash h2 {
+            font-size: 28px;
+            margin-top: 15px;
+            color: #00e5ff;
+        }
+
+        /* Main Page */
+        #main {
+            display: none;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: float 6s linear infinite;
+        }
+
+        /* Glass Card */
+        .container {
+            max-width: 600px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
+            text-align: center;
+            animation: fadeCard 2s ease forwards;
+            opacity: 0;
+        }
+
+        h1 {
+            font-size: 40px;
+            color: #ffd700;
+            animation: glow 2s infinite alternate;
+        }
+
+        h2 {
+            font-size: 26px;
+            margin: 10px 0;
+            color: #00e5ff;
+        }
+
+        .wish {
+            font-size: 18px;
+            line-height: 1.8;
+            animation: slideFade 2s ease forwards;
+            opacity: 0;
+        }
+
+        .name {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #7cff00;
+            font-weight: bold;
+        }
+
+        /* Animations */
+        @keyframes bgMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #ffd700;
+            }
+
+            to {
+                text-shadow: 0 0 35px #ffd700;
+            }
+        }
+
+        @keyframes fadeCard {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideFade {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(100vh) scale(0);
+            }
+
+            to {
+                transform: translateY(-10vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Mobile */
+        @media(max-width:600px) {
+            .container {
+                width: 90%;
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .wish {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Splash -->
+    <div id="splash">
+        <h1>🎆 Welcome 2026 🎆</h1>
+        <h2>Happy New Year</h2>
+    </div>
+
+    <!-- Main Page -->
+    <div id="main">
+        <div class="container">
+            <h1>🎇 Happy New Year 2026 🎇</h1>
+            <h2 id="personName"></h2>
+
+            <p class="wish">
+                As we step into this beautiful new year 2026, may your life be filled with
+                new hopes, fresh opportunities, and endless happiness.
+                May every sunrise bring success, every sunset give peace,
+                and every moment add a reason to smile.
+                Let this year be a fresh beginning full of positivity,
+                love, and unforgettable memories. ✨
+            </p>
+
+            <div class="name">With Best Wishes 💖</div>
+        </div>
+    </div>
+
+    <script>
+        /* Sparkles */
+        for (let i = 0; i < 50; i++) {
+            let s = document.createElement("div");
+            s.className = "sparkle";
+            s.style.left = Math.random() * 100 + "vw";
+            s.style.animationDuration = (3 + Math.random() * 4) + "s";
+            document.body.appendChild(s);
+        }
+
+        /* Get name from URL */
+        const params = new URLSearchParams(window.location.search);
+        let name = params.get("name");
+        if (!name) name = "Dear Friend";
+        document.getElementById("personName").innerText = "Dear " + name + ",";
+
+        /* Splash delay */
+        setTimeout(() => {
+            document.getElementById("splash").style.display = "none";
+            document.getElementById("main").style.display = "flex";
+        }, 3500);
+    </script>
+
+</body>
+
+</html>
